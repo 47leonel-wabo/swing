@@ -1,6 +1,7 @@
 package swing.components;
 
 import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -70,7 +71,8 @@ public class MainFrame extends JFrame {
         final JMenuItem importItem = new JMenuItem("Import Data...");
         fileMenu.add(importItem);
         fileMenu.addSeparator();
-        fileMenu.add(new JMenuItem("Quit"));
+        final JMenuItem quitItem = new JMenuItem("Quit");
+        fileMenu.add(quitItem);
 
         JMenu aboutMenu = new JMenu("About");
 
@@ -98,6 +100,19 @@ public class MainFrame extends JFrame {
         showCheckBoxMenuItem.addActionListener((a) -> {
             formPanel.setVisible(showCheckBoxMenuItem.isSelected());
         });
+        
+        // Quit item listener
+        quitItem.addActionListener((ae) -> {
+            System.out.println("Quit Program...");
+        });
+        
+        // Adding Mnemonics
+        fileMenu.setMnemonic(KeyEvent.VK_F); // Alt + F
+        aboutMenu.setMnemonic(KeyEvent.VK_A); // Alt + A
+        exportItem.setMnemonic(KeyEvent.VK_E); // Alt + E
+        windowMenu.setMnemonic(KeyEvent.VK_W);
+        quitItem.setMnemonic(KeyEvent.VK_Q);
+        importItem.setMnemonic(KeyEvent.VK_I);
 
         return menuBar;
     }

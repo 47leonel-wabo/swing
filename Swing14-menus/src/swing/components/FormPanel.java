@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -66,6 +67,10 @@ public class FormPanel extends JPanel implements ActionListener {
         maleRadioButton = new JRadioButton("Male");
         femaleRadioButton = new JRadioButton("Female");
         genderGroup = new ButtonGroup();
+        
+        // Linking labels to targeted field
+        nameLabel.setDisplayedMnemonic(KeyEvent.VK_N);
+        nameLabel.setLabelFor(nameTextField);
 
         // Setting up list boxes
         DefaultListModel ageModel = new DefaultListModel();
