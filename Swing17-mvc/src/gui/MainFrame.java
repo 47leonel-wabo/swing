@@ -64,6 +64,9 @@ public class MainFrame extends JFrame {
                     af.getOccupation(),
                     af.getAge());
             textPanel.pasteTextToTextArea(formattedInfo);
+            
+            // Passing data recieved to the app controller
+            appController.addPerson(af);
         });
 
         add(toolbarPanel, BorderLayout.NORTH);

@@ -1,25 +1,25 @@
-package gui;
+package swing11.comboBoxes.components;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import swing.app.model.ActivityForm;
+import swing.app.model.AgeCategory;
+import swing.app.model.EmployeeCategory;
+import swing11.comboBoxes.HandleForm;
 
 /**
  *
@@ -27,15 +27,11 @@ import javax.swing.border.Border;
  */
 public class FormPanel extends JPanel implements ActionListener {
 
-    private final JLabel nameLabel, occupationLabel, formTitleLabel, taxLabel;
-    private final JTextField nameTextField, occupationTextField, taxTextField;
+    private final JLabel nameLabel, occupationLabel, formTitleLabel;
+    private final JTextField nameTextField, occupationTextField;
     private final JButton okBtn;
     private final JList ageList;
     private final JComboBox empBox;
-    private final JCheckBox citizenBox;
-
-    private final ButtonGroup genderGroup;
-    private final JRadioButton maleRadioButton, femaleRadioButton;
 
     // Listener interface
     private HandleForm handleForm;
@@ -57,16 +53,6 @@ public class FormPanel extends JPanel implements ActionListener {
         okBtn = new JButton("Save");
         ageList = new JList();
         empBox = new JComboBox();
-        citizenBox = new JCheckBox();
-        taxLabel = new JLabel("Tax ID: ");
-        taxTextField = new JTextField(12);
-        maleRadioButton = new JRadioButton("Male");
-        femaleRadioButton = new JRadioButton("Female");
-        genderGroup = new ButtonGroup();
-
-        // Linking labels to targeted field
-        nameLabel.setDisplayedMnemonic(KeyEvent.VK_N);
-        nameLabel.setLabelFor(nameTextField);
 
         // Setting up list boxes
         DefaultListModel ageModel = new DefaultListModel();
@@ -87,30 +73,18 @@ public class FormPanel extends JPanel implements ActionListener {
         empBox.setModel(emBoxModel);
         empBox.setPreferredSize(new Dimension(145, 25));
 
-        // Setting Checkbox (Tax) :)
-        taxLabel.setEnabled(false);
-        taxTextField.setEnabled(false);
-        citizenBox.addActionListener(this);
-
-        // Setting Gender button group
-        maleRadioButton.setSelected(true);
-        maleRadioButton.setActionCommand("Male");
-        femaleRadioButton.setActionCommand("Female");
-        genderGroup.add(maleRadioButton);
-        genderGroup.add(femaleRadioButton);
-
         // Form panel border
         setBorder(BorderFactory.createCompoundBorder(outerBorder, innerBorder));
-
+        
         okBtn.addActionListener(this);
-
+        
         /*
             Layout All Components
-         */
+        */
         layoutComponents();
     }
-
-    private void layoutComponents() {
+    
+    private void layoutComponents(){
         // Form panel layout
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
@@ -147,7 +121,7 @@ public class FormPanel extends JPanel implements ActionListener {
         gc.anchor = GridBagConstraints.LINE_START;
         add(occupationTextField, gc);
 
-        // ********** Third Row ****************** (Age List)
+        // ********** Third Row ******************
         // Cells sizes
         gc.weightx = 2;
         gc.weighty = .1;
@@ -155,14 +129,14 @@ public class FormPanel extends JPanel implements ActionListener {
         gc.gridx = 0; // Col
         gc.gridy = 2; // Row
         gc.anchor = GridBagConstraints.FIRST_LINE_END;
-        add(new JLabel("Age: "), gc);
+        add(new JLabel("Age "), gc);
         // Second Cell
         gc.gridx = 1; // Col
         gc.gridy = 2; // Row
         gc.anchor = GridBagConstraints.FIRST_LINE_START;
         add(ageList, gc);
-
-        // ********** Fourth Row ****************** (Combo Boxe)
+        
+        // ********** Fourth Row ******************
         // Cells sizes
         gc.weightx = 2;
         gc.weighty = .1;
@@ -170,69 +144,20 @@ public class FormPanel extends JPanel implements ActionListener {
         gc.gridx = 0; // Col
         gc.gridy = 3; // Row
         gc.anchor = GridBagConstraints.FIRST_LINE_END;
-        add(new JLabel("Employment: "), gc);
+        add(new JLabel("Employee "), gc);
         // Second Cell
         gc.gridx = 1; // Col
         gc.gridy = 3; // Row
         gc.anchor = GridBagConstraints.FIRST_LINE_START;
         add(empBox, gc);
 
-        /*
-            Went component list become important in termers of number,
-            it's better to just increment row's number, like below!
-         */
-        // ********** Other Row ****************** (Check Box)
-        gc.gridy++;
-        gc.weightx = 1;
-        gc.weighty = .1;
-        // First cell
-        gc.gridx = 1; // Third cell
-        gc.anchor = GridBagConstraints.FIRST_LINE_START;
-        add(citizenBox, gc);
-        // Second cell
-        gc.gridx = 0; // Third cell
-        gc.anchor = GridBagConstraints.FIRST_LINE_END;
-        add(new JLabel("US Citizen: "), gc);
-
-        // ********** Other Row ****************** (Taxes)
-        gc.gridy++;
-        gc.weightx = 1;
-        gc.weighty = .1;
-        gc.gridx = 0; // first cell
-        gc.anchor = GridBagConstraints.FIRST_LINE_END;
-        add(taxLabel, gc);
-        // Second cell
-        gc.gridx = 1; // Third cell
-        gc.anchor = GridBagConstraints.FIRST_LINE_START;
-        add(taxTextField, gc);
-
-        // ********** Other Row ****************** (Gender)
-        gc.gridy++;
-        gc.weightx = 1;
-        gc.weighty = .01;
-        gc.gridx = 0; // first cell
-        gc.anchor = GridBagConstraints.FIRST_LINE_END;
-        add(new JLabel("Gender: "), gc);
-        // Second cell
-        gc.gridx = 1; // Third cell
-        gc.anchor = GridBagConstraints.FIRST_LINE_START;
-        add(maleRadioButton, gc);
-
-        gc.gridy++;
-        gc.weightx = 1;
-        gc.weighty = .01;
-        // Second cell
-        gc.gridx = 1; // Third cell
-        gc.anchor = GridBagConstraints.FIRST_LINE_START;
-        add(femaleRadioButton, gc);
-
-        // ********** Last Row ****************** (Ok button)
+        // ********** Fith Row ******************
         // Cells sizes
-        gc.gridy++;
         gc.weightx = 1;
         gc.weighty = 2;
         // Second Cell
         gc.gridx = 1;
+        gc.gridy = 4;
         gc.anchor = GridBagConstraints.FIRST_LINE_START;
         add(okBtn, gc);
     }
@@ -245,25 +170,14 @@ public class FormPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == okBtn) {
             ActivityForm af = new ActivityForm(
-                    nameTextField.getText(), 
-                    occupationTextField.getText(), 
-                    ((AgeCategory) ageList.getSelectedValue()).getValue(), 
-                    ((EmployeeCategory)empBox.getSelectedItem()).getName(), 
-                    citizenBox.isSelected(), 
-                    taxTextField.getText(), 
-                    genderGroup.getSelection().getActionCommand());
-            
+                    nameTextField.getText(),
+                    occupationTextField.getText(),
+                    ((AgeCategory) ageList.getSelectedValue()).getValue());
+
             System.out.println(af);
-            //System.out.println(empBox.getSelectedItem());
-            handleForm.formDataTransfer(af);
+            System.out.println(empBox.getSelectedItem());
+            //handleForm.formDataTransfer(af);
         }
-
-        if (ae.getSource() == citizenBox) {
-            taxLabel.setEnabled(!taxLabel.isEnabled());
-            taxTextField.setEnabled(!taxTextField.isEnabled());
-        }
-
-        System.out.println(genderGroup.getSelection().getActionCommand());
     }
 
 }

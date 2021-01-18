@@ -41,6 +41,38 @@ public class ActivityForm {
         return name;
     }
 
+    public String getEmployment() {
+        return employment;
+    }
+
+    public void setEmployment(String employment) {
+        this.employment = employment;
+    }
+
+    public boolean isCitizen() {
+        return citizen;
+    }
+
+    public void setCitizen(boolean citizen) {
+        this.citizen = citizen;
+    }
+
+    public String getTaxId() {
+        return taxId;
+    }
+
+    public void setTaxId(String taxId) {
+        this.taxId = taxId;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

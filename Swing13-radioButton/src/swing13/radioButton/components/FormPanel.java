@@ -1,11 +1,10 @@
-package gui;
+package swing13.radioButton.components;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -20,6 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import swing.app.model.ActivityForm;
+import swing.app.model.AgeCategory;
+import swing.app.model.EmployeeCategory;
+import swing13.radioButton.HandleForm;
 
 /**
  *
@@ -63,10 +66,6 @@ public class FormPanel extends JPanel implements ActionListener {
         maleRadioButton = new JRadioButton("Male");
         femaleRadioButton = new JRadioButton("Female");
         genderGroup = new ButtonGroup();
-
-        // Linking labels to targeted field
-        nameLabel.setDisplayedMnemonic(KeyEvent.VK_N);
-        nameLabel.setLabelFor(nameTextField);
 
         // Setting up list boxes
         DefaultListModel ageModel = new DefaultListModel();
@@ -170,7 +169,7 @@ public class FormPanel extends JPanel implements ActionListener {
         gc.gridx = 0; // Col
         gc.gridy = 3; // Row
         gc.anchor = GridBagConstraints.FIRST_LINE_END;
-        add(new JLabel("Employment: "), gc);
+        add(new JLabel("Employee: "), gc);
         // Second Cell
         gc.gridx = 1; // Col
         gc.gridy = 3; // Row
@@ -192,7 +191,7 @@ public class FormPanel extends JPanel implements ActionListener {
         // Second cell
         gc.gridx = 0; // Third cell
         gc.anchor = GridBagConstraints.FIRST_LINE_END;
-        add(new JLabel("US Citizen: "), gc);
+        add(new JLabel("Taxes: "), gc);
 
         // ********** Other Row ****************** (Taxes)
         gc.gridy++;
@@ -245,17 +244,13 @@ public class FormPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == okBtn) {
             ActivityForm af = new ActivityForm(
-                    nameTextField.getText(), 
-                    occupationTextField.getText(), 
-                    ((AgeCategory) ageList.getSelectedValue()).getValue(), 
-                    ((EmployeeCategory)empBox.getSelectedItem()).getName(), 
-                    citizenBox.isSelected(), 
-                    taxTextField.getText(), 
-                    genderGroup.getSelection().getActionCommand());
-            
+                    nameTextField.getText(),
+                    occupationTextField.getText(),
+                    ((AgeCategory) ageList.getSelectedValue()).getValue());
+
             System.out.println(af);
-            //System.out.println(empBox.getSelectedItem());
-            handleForm.formDataTransfer(af);
+            System.out.println(empBox.getSelectedItem());
+            //handleForm.formDataTransfer(af);
         }
 
         if (ae.getSource() == citizenBox) {
