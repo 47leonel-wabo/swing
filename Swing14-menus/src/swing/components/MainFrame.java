@@ -1,0 +1,104 @@
+package swing.components;
+
+import java.awt.BorderLayout;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+/**
+ *
+ * @author ddok This MainFrame plays a role as a controller for all other
+ * components
+ */
+public class MainFrame extends JFrame {
+
+    private final String title;
+    private final int xSize, ySize;
+
+    // Custom components
+    private final TextPanel textPanel;
+    private final ToolbarPanel toolbarPanel;
+    private final FormPanel formPanel;
+
+    public MainFrame(String title, int xSize, int ySize) {
+        super(title);
+        this.title = title;
+        this.xSize = xSize;
+        this.ySize = ySize;
+
+        setLayout(new BorderLayout());
+
+        // App Menu Bar
+        setJMenuBar(createMenuBar());
+
+        textPanel = new TextPanel();
+        toolbarPanel = new ToolbarPanel();
+        formPanel = new FormPanel();
+
+        toolbarPanel.setTextListener(((str) -> {
+            textPanel.pasteTextToTextArea(str);
+        }));
+
+        formPanel.setHandleForm((af) -> {
+            String formattedInfo = String.format("----------\n Username: %s \n Occupation: %s \n Age: %s \n ---------",
+                    af.getName(),
+                    af.getOccupation(),
+                    af.getAge());
+            textPanel.pasteTextToTextArea(formattedInfo);
+        });
+
+        add(toolbarPanel, BorderLayout.NORTH);
+        add(formPanel, BorderLayout.WEST);
+        add(textPanel, BorderLayout.CENTER);
+
+        setSize(xSize, ySize);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    private JMenuBar createMenuBar() {
+        /*
+            Defining all the menu content
+         */
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("File");
+        final JMenuItem exportItem = new JMenuItem("Export Data...");
+        fileMenu.add(exportItem);
+        final JMenuItem importItem = new JMenuItem("Import Data...");
+        fileMenu.add(importItem);
+        fileMenu.addSeparator();
+        fileMenu.add(new JMenuItem("Quit"));
+
+        JMenu aboutMenu = new JMenu("About");
+
+        JMenu showFormMenu = new JMenu("Show");
+        JMenuItem showFormItem = new JMenuItem("Person Form");
+        JCheckBoxMenuItem showCheckBoxMenuItem = new JCheckBoxMenuItem("Get Form");
+        showCheckBoxMenuItem.setActionCommand("Show-menu");
+        showCheckBoxMenuItem.setSelected(true);
+        showFormMenu.add(showFormItem);
+
+        JMenu windowMenu = new JMenu("Window");
+        windowMenu.add(showFormMenu);
+        windowMenu.add(showCheckBoxMenuItem);
+
+        menuBar.add(fileMenu);
+        menuBar.add(windowMenu);
+        menuBar.add(aboutMenu);
+
+        // File Action Listener - Export
+        exportItem.addActionListener(((ae) -> {
+            System.out.println("Export");
+        }));
+
+        // Show Form Action Listener
+        showCheckBoxMenuItem.addActionListener((a) -> {
+            formPanel.setVisible(showCheckBoxMenuItem.isSelected());
+        });
+
+        return menuBar;
+    }
+}
