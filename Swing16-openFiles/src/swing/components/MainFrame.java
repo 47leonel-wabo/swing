@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import swing.app.utils.FileFilterUtil;
 
 /**
  *
@@ -108,6 +109,7 @@ public class MainFrame extends JFrame {
 
         // File Action Listener - Export
         exportItem.addActionListener(((ae) -> {
+            fileChooser.addChoosableFileFilter(new FileFilterUtil()); // Set a custom file filter
             if (fileChooser.showSaveDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
                 System.out.println(fileChooser.getSelectedFile());
             }
