@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
     private final FormPanel formPanel;
     private final JFileChooser fileChooser;
     private final TablePanel tablePanel;
-    
+
     // App Controller
     private AppController appController;
 
@@ -52,28 +52,18 @@ public class MainFrame extends JFrame {
         fileChooser = new JFileChooser();
         appController = new AppController();
         tablePanel = new TablePanel();
-        
+
+        // Passing a list of data to table panel component
+        tablePanel.setTableModelData(appController.getPeople());
+
         // File Chooser
         fileChooser.setMultiSelectionEnabled(true);
 
-        /*toolbarPanel.setTextListener(((str) -> {
-            textPanel.pasteTextToTextArea(str);
-        }));*/
-
-        formPanel.setHandleForm((af) -> {
-            /*String formattedInfo = String.format("----------\n Username: %s \n Occupation: %s \n Age: %s \n ---------",
-                    af.getName(),
-                    af.getOccupation(),
-                    af.getAge());
-            textPanel.pasteTextToTextArea(formattedInfo);
-            */
+        // This will be triggered when "save" button on form panel will be push
+        formPanel.setHandleForm((ActivityForm af) -> {
             // Passing data recieved to the app controller
             appController.addPerson(af);
-            System.out.println("******************************************");
-            appController.getPeople().forEach(person -> {
-                System.out.println(person);
-            });
-            System.out.println("******************************************");
+            tablePanel.refreshTable(); // Once passing data, we refresh the table component
         });
 
         add(toolbarPanel, BorderLayout.NORTH);
@@ -128,12 +118,12 @@ public class MainFrame extends JFrame {
                 System.out.println(fileChooser.getSelectedFile());
             }
         }));
-        
+
         // File Action Listener - Import
         importItem.addActionListener(((ae) -> {
             int file = fileChooser.showOpenDialog(MainFrame.this);
             if (file == JFileChooser.APPROVE_OPTION) {
-                for(File f : fileChooser.getSelectedFiles()){
+                for (File f : fileChooser.getSelectedFiles()) {
                     System.out.println(f.getAbsolutePath());
                 }
             }
@@ -157,22 +147,16 @@ public class MainFrame extends JFrame {
                     JOptionPane.CANCEL_OPTION);
             if (action == JOptionPane.OK_OPTION) {
                 // Close only if user clicked OK
-               System.exit(0); 
+                System.exit(0);
             }
-            
+
         });
 
-        
         // About menu item Listener
         aboutMenuItem.addActionListener((ae) -> {
-            /*String inputValue = JOptionPane.showInputDialog(MainFrame.this,
-                    "Enter your user name",
-                    "aiwa | Login",
-                    JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
-            System.out.println(inputValue);*/
-            JOptionPane.showMessageDialog(MainFrame.this, 
-                    "This is a sample application builds\nin order to acquire Java Swing \nconcepts and principles!", 
-                    "About", 
+            JOptionPane.showMessageDialog(MainFrame.this,
+                    "This is a sample application builds\nin order to acquire Java Swing \nconcepts and principles!",
+                    "About",
                     JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
         });
         // Adding Mnemonics

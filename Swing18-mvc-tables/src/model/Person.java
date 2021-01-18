@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author ddok
  */
 public class Person {
-    
+
     private final static AtomicLong index = new AtomicLong();
 
     private Long id;
@@ -20,14 +20,16 @@ public class Person {
     private GenderCategory gender;
 
     public Person() {
+        // Auto-increment ID for each person created
+        this.id = index.incrementAndGet();
     }
 
-    public Person(String name, 
-            String occupation, 
-            AgeCategory ageCategory, 
-            EmployementCategory empCategory, 
-            String taxId, 
-            boolean usCitizen, 
+    public Person(String name,
+            String occupation,
+            AgeCategory ageCategory,
+            EmployementCategory empCategory,
+            String taxId,
+            boolean usCitizen,
             GenderCategory gender) {
         this.name = name;
         this.occupation = occupation;

@@ -69,7 +69,7 @@ public class AppController {
         person.setAgeCategory(ageCat);
         person.setEmpCategory(empCat);
         person.setGender(genderCategory);
-
+        
         personDao.addPerson(person);
     }
 

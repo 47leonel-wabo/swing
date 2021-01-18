@@ -254,7 +254,7 @@ public class FormPanel extends JPanel implements ActionListener {
                     taxTextField.getText(), 
                     genderGroup.getSelection().getActionCommand());
             
-            System.out.println(af);
+            //System.out.println("** "+af);
             //System.out.println(empBox.getSelectedItem());
             handleForm.formDataTransfer(af);
         }
@@ -264,7 +264,7 @@ public class FormPanel extends JPanel implements ActionListener {
             taxTextField.setEnabled(!taxTextField.isEnabled());
         }
 
-        System.out.println(genderGroup.getSelection().getActionCommand());
+        //System.out.println("** "+genderGroup.getSelection().getActionCommand());
     }
 
 }
