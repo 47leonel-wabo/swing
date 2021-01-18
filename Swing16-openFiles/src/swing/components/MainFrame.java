@@ -109,7 +109,7 @@ public class MainFrame extends JFrame {
 
         // File Action Listener - Export
         exportItem.addActionListener(((ae) -> {
-            fileChooser.addChoosableFileFilter(new FileFilterUtil()); // Set a custom file filter
+            fileChooser.addChoosableFileFilter(new FileFilterUtil()); // Set a custom file filter (not working for now)
             if (fileChooser.showSaveDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
                 System.out.println(fileChooser.getSelectedFile());
             }
