@@ -14,6 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import model.Person;
 
 /**
  *
@@ -67,6 +68,11 @@ public class MainFrame extends JFrame {
             
             // Passing data recieved to the app controller
             appController.addPerson(af);
+            System.out.println("******************************************");
+            appController.getPeople().forEach(person -> {
+                System.out.println(person);
+            });
+            System.out.println("******************************************");
         });
 
         add(toolbarPanel, BorderLayout.NORTH);

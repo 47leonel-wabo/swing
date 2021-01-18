@@ -19,10 +19,7 @@ public class FileFilterUtil extends FileFilter {
         if (ext == null) {
             return false;
         }
-        if (ext.equals("aiwa")) {
-            return true;
-        }
-        return false;
+        return ext.equals("aiwa");
     }
 
     @Override

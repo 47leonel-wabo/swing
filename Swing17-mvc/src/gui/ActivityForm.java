@@ -8,13 +8,13 @@ public class ActivityForm {
 
     private String name;
     private String occupation;
-    private String age;
-    private String employment;
+    private AgeCat age;
+    private EmployeeCategory employment;
     private boolean citizen;
     private String taxId;
     private String gender;
 
-    public ActivityForm(String name, String occupation, String age, String employment, boolean citizen, String taxId, String gender) {
+    public ActivityForm(String name, String occupation, AgeCat age, EmployeeCategory employment, boolean citizen, String taxId, String gender) {
         this.name = name;
         this.occupation = occupation;
         this.age = age;
@@ -24,11 +24,11 @@ public class ActivityForm {
         this.gender = gender;
     }
 
-    public String getAge() {
+    public AgeCat getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(AgeCat age) {
         this.age = age;
     }
 
@@ -41,11 +41,11 @@ public class ActivityForm {
         return name;
     }
 
-    public String getEmployment() {
+    public EmployeeCategory getEmployment() {
         return employment;
     }
 
-    public void setEmployment(String employment) {
+    public void setEmployment(EmployeeCategory employment) {
         this.employment = employment;
     }
 

@@ -4,21 +4,24 @@ package gui;
  *
  * @author ddok
  */
-public class AgeCategory {
+public class AgeCat {
 
-    private int id;
+    private long id;
     private String value;
 
-    public AgeCategory(int id, String value) {
+    public AgeCat() {
+    }
+
+    public AgeCat(long id, String value) {
         this.id = id;
         this.value = value;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

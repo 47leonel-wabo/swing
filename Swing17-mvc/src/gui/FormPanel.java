@@ -70,9 +70,9 @@ public class FormPanel extends JPanel implements ActionListener {
 
         // Setting up list boxes
         DefaultListModel ageModel = new DefaultListModel();
-        ageModel.addElement(new AgeCategory(0, "under 18"));
-        ageModel.addElement(new AgeCategory(1, "18 to 65"));
-        ageModel.addElement(new AgeCategory(2, "65 or over"));
+        ageModel.addElement(new AgeCat(0, "under 18"));
+        ageModel.addElement(new AgeCat(1, "18 to 65"));
+        ageModel.addElement(new AgeCat(2, "65 or over"));
         // Hook model to list component
         ageList.setModel(ageModel);
         ageList.setBorder(BorderFactory.createEtchedBorder());
@@ -81,9 +81,10 @@ public class FormPanel extends JPanel implements ActionListener {
 
         // Setting up combo-boxes
         DefaultComboBoxModel emBoxModel = new DefaultComboBoxModel();
-        emBoxModel.addElement(new EmployeeCategory(0, "Software Ing.", BigDecimal.valueOf(1500.0)));
-        emBoxModel.addElement(new EmployeeCategory(1, "Graphist", BigDecimal.valueOf(380.0)));
-        emBoxModel.addElement(new EmployeeCategory(2, "Doctor", BigDecimal.valueOf(5500.0)));
+        emBoxModel.addElement(new EmployeeCategory(0, "Employed", BigDecimal.valueOf(1500.0)));
+        emBoxModel.addElement(new EmployeeCategory(1, "Self-employed", BigDecimal.valueOf(380.0)));
+        emBoxModel.addElement(new EmployeeCategory(2, "Unemployed", BigDecimal.valueOf(5500.0)));
+        emBoxModel.addElement(new EmployeeCategory(2, "Other", BigDecimal.valueOf(5500.0)));
         empBox.setModel(emBoxModel);
         empBox.setPreferredSize(new Dimension(145, 25));
 
@@ -247,8 +248,8 @@ public class FormPanel extends JPanel implements ActionListener {
             ActivityForm af = new ActivityForm(
                     nameTextField.getText(), 
                     occupationTextField.getText(), 
-                    ((AgeCategory) ageList.getSelectedValue()).getValue(), 
-                    ((EmployeeCategory)empBox.getSelectedItem()).getName(), 
+                    ((AgeCat) ageList.getSelectedValue()), 
+                    ((EmployeeCategory)empBox.getSelectedItem()), 
                     citizenBox.isSelected(), 
                     taxTextField.getText(), 
                     genderGroup.getSelection().getActionCommand());
