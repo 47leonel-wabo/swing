@@ -1,12 +1,14 @@
 package swing.components;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -100,12 +102,12 @@ public class MainFrame extends JFrame {
         showCheckBoxMenuItem.addActionListener((a) -> {
             formPanel.setVisible(showCheckBoxMenuItem.isSelected());
         });
-        
+
         // Quit item listener
         quitItem.addActionListener((ae) -> {
-            System.out.println("Quit Program...");
+            System.exit(0);
         });
-        
+
         // Adding Mnemonics
         fileMenu.setMnemonic(KeyEvent.VK_F); // Alt + F
         aboutMenu.setMnemonic(KeyEvent.VK_A); // Alt + A
@@ -113,6 +115,10 @@ public class MainFrame extends JFrame {
         windowMenu.setMnemonic(KeyEvent.VK_W);
         quitItem.setMnemonic(KeyEvent.VK_Q);
         importItem.setMnemonic(KeyEvent.VK_I);
+
+        // Adding Accelerator
+        // Ctrl + X, to close the program
+        quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 
         return menuBar;
     }
