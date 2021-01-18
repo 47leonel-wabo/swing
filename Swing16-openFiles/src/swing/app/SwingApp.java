@@ -1,7 +1,7 @@
 package swing.app;
 
 import javax.swing.SwingUtilities;
-import swing.components.MainFrame;
+import gui.MainFrame;
 
 /**
  *

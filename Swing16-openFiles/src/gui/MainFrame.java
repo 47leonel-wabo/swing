@@ -1,4 +1,4 @@
-package swing.components;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,7 +13,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-import swing.app.utils.FileFilterUtil;
 
 /**
  *
@@ -138,7 +137,7 @@ public class MainFrame extends JFrame {
              */
             int action = JOptionPane.showConfirmDialog(
                     MainFrame.this,
-                    "Do you really want to Quit the application",
+                    "Do you really want to quit this application",
                     "Confirm Exist",
                     JOptionPane.CANCEL_OPTION);
             if (action == JOptionPane.OK_OPTION) {

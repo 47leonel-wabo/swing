@@ -1,4 +1,4 @@
-package swing.components;
+package gui;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -20,10 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import swing.app.model.ActivityForm;
-import swing.app.model.AgeCategory;
-import swing.app.model.EmployeeCategory;
-import swing16.openFiles.HandleForm;
 
 /**
  *

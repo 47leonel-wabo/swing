@@ -1,4 +1,4 @@
-package swing.app.model;
+package gui;
 
 /**
  *

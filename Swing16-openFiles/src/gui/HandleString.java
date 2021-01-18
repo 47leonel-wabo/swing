@@ -1,4 +1,4 @@
-package swing16.openFiles;
+package gui;
 
 /**
  *

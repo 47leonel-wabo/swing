@@ -1,6 +1,4 @@
-package swing16.openFiles;
-
-import swing.app.model.ActivityForm;
+package gui;
 
 /**
  *

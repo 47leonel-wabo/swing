@@ -1,4 +1,4 @@
-package swing.app.utils;
+package gui;
 
 import java.io.File;
 import javax.swing.filechooser.FileFilter;

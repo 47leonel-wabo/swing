@@ -1,4 +1,4 @@
-package swing.app.utils;
+package gui;
 
 /**
  *
