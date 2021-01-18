@@ -9,11 +9,19 @@ public class ActivityForm {
     private String name;
     private String occupation;
     private String age;
+    private String employment;
+    private boolean citizen;
+    private String taxId;
+    private String gender;
 
-    public ActivityForm(String name, String occupation, String age) {
+    public ActivityForm(String name, String occupation, String age, String employment, boolean citizen, String taxId, String gender) {
         this.name = name;
         this.occupation = occupation;
         this.age = age;
+        this.employment = employment;
+        this.citizen = citizen;
+        this.taxId = taxId;
+        this.gender = gender;
     }
 
     public String getAge() {
@@ -47,7 +55,7 @@ public class ActivityForm {
 
     @Override
     public String toString() {
-        return "ActivityForm{" + "name=" + name + ", occupation=" + occupation + ", age=" + age + '}';
+        return "ActivityForm{" + "name=" + name + ", occupation=" + occupation + ", age=" + age + ", employment=" + employment + ", citizen=" + citizen + ", taxId=" + taxId + ", gender=" + gender + '}';
     }
 
 }

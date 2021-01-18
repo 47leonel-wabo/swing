@@ -63,7 +63,7 @@ public class FormPanel extends JPanel implements ActionListener {
         maleRadioButton = new JRadioButton("Male");
         femaleRadioButton = new JRadioButton("Female");
         genderGroup = new ButtonGroup();
-        
+
         // Linking labels to targeted field
         nameLabel.setDisplayedMnemonic(KeyEvent.VK_N);
         nameLabel.setLabelFor(nameTextField);
@@ -245,12 +245,16 @@ public class FormPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == okBtn) {
             ActivityForm af = new ActivityForm(
-                    nameTextField.getText(),
-                    occupationTextField.getText(),
-                    ((AgeCategory) ageList.getSelectedValue()).getValue());
-
+                    nameTextField.getText(), 
+                    occupationTextField.getText(), 
+                    ((AgeCategory) ageList.getSelectedValue()).getValue(), 
+                    ((EmployeeCategory)empBox.getSelectedItem()).getName(), 
+                    citizenBox.isSelected(), 
+                    taxTextField.getText(), 
+                    genderGroup.getSelection().getActionCommand());
+            
             System.out.println(af);
-            System.out.println(empBox.getSelectedItem());
+            //System.out.println(empBox.getSelectedItem());
             //handleForm.formDataTransfer(af);
         }
 

@@ -1,5 +1,6 @@
 package gui;
 
+import controller.AppController;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,9 @@ public class MainFrame extends JFrame {
     private final ToolbarPanel toolbarPanel;
     private final FormPanel formPanel;
     private final JFileChooser fileChooser;
+    
+    // App Controller
+    private AppController appController;
 
     public MainFrame(String title, int xSize, int ySize) {
         super(title);
@@ -45,6 +49,7 @@ public class MainFrame extends JFrame {
         toolbarPanel = new ToolbarPanel();
         formPanel = new FormPanel();
         fileChooser = new JFileChooser();
+        appController = new AppController();
         
         // File Chooser
         fileChooser.setMultiSelectionEnabled(true);
