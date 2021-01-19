@@ -14,7 +14,15 @@ public class PersonTableModel extends AbstractTableModel {
     private List<Person> people;
 
     public PersonTableModel() {
-        people = new ArrayList<>();
+        this.people = new ArrayList<>();
+    }
+
+    public List<Person> getPeople() {
+        return people;
+    }
+
+    public void setPeople(List<Person> people) {
+        this.people = people;
     }
 
     @Override
@@ -48,10 +56,6 @@ public class PersonTableModel extends AbstractTableModel {
         }
 
         return null;
-    }
-
-    public void setPersonData(List<Person> p) {
-        this.people = p;
     }
 
 }

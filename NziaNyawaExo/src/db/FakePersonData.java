@@ -22,6 +22,7 @@ public class FakePersonData {
     }
     
     public static List<Person> getPeople(){
+        System.out.println("***** Fake DB requesting data...");
         return PEOPLE;
     }
     

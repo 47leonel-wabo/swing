@@ -17,6 +17,7 @@ public class AppController {
     }
     
     public List<Person> getPeople(){
+        System.out.println("**** Controller passing data...");
         return personDao.getPeople();
     }
 }

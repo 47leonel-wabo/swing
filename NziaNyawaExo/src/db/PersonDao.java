@@ -13,6 +13,7 @@ public class PersonDao {
     }
     
     public List<Person> getPeople(){
+        System.out.println("**** DAO passing data...");
         return FakePersonData.getPeople();
     }
     

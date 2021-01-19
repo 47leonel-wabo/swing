@@ -1,7 +1,6 @@
 package gui;
 
 import gui.listener.FormHandleListener;
-import gui.listener.HideShowFormPanelListener;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -193,7 +192,7 @@ public class FormPanel extends JPanel implements ActionListener {
                     roleTextField.getText(),
                     genderGroup.getSelection().getActionCommand(),
                     addressTextField.getText());
-            
+
             formHandleListener.personFormListener(p);
             freeFormFields();
         }
@@ -202,8 +201,8 @@ public class FormPanel extends JPanel implements ActionListener {
     public void addFormListener(FormHandleListener listener) {
         this.formHandleListener = listener;
     }
-    
-    private void freeFormFields(){
+
+    private void freeFormFields() {
         firstNameTextField.setText("");
         lastNameTextField.setText("");
         occupationTextField.setText("");
