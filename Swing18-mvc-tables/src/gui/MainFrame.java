@@ -1,5 +1,6 @@
 package gui;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import controller.AppController;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -14,6 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 
 /**
  *
@@ -37,6 +39,26 @@ public class MainFrame extends JFrame {
 
     public MainFrame(String title, int xSize, int ySize) {
         super(title);
+
+        /*
+            Look and Feel
+         */
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+//        try {
+//            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (Exception e) {
+//            // If Nimbus is not available, you can set the GUI to another look and feel.
+//        }
+
         this.title = title;
         this.xSize = xSize;
         this.ySize = ySize;
