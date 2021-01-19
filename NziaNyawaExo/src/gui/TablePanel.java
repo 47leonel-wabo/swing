@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 import model.Person;
@@ -35,7 +36,7 @@ public class TablePanel extends JPanel {
         setBorder(BorderFactory.createCompoundBorder(outerBorder, outerBorder)); // Border
 
         // Adding components to their container
-        add(table, BorderLayout.CENTER);
+        add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
     public void addDataToTableModel(List<Person> people) {

@@ -75,7 +75,7 @@ public class MainWindow extends JFrame {
 
         // Positioning element (component) on the layout
         add(menuBarPanel, BorderLayout.NORTH);
-        add(new JScrollPane(dataTable), BorderLayout.CENTER);
+        add(dataTable, BorderLayout.CENTER);
         add(registrationForm, BorderLayout.WEST);
 
         setSize(new Dimension(800, 600));

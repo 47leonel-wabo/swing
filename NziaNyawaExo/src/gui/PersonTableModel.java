@@ -12,9 +12,15 @@ import model.Person;
 public class PersonTableModel extends AbstractTableModel {
 
     private List<Person> people;
+    private String[] colNames = {"ID", "FIRST NAME", "LAST NAME", "OCCUPATION", "ADDRESS", "GENDER", "ROLE"};
 
     public PersonTableModel() {
         this.people = new ArrayList<>();
+    }
+
+    @Override
+    public String getColumnName(int i) {
+        return colNames[i];
     }
 
     public List<Person> getPeople() {
