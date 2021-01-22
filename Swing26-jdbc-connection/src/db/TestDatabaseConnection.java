@@ -1,6 +1,10 @@
 package db;
 
-import model.DatabaseConnection;
+import model.AgeCategory;
+import model.EmployementCategory;
+import model.GenderCategory;
+import model.Person;
+import model.PersonDao;
 
 /**
  *
@@ -8,14 +12,22 @@ import model.DatabaseConnection;
  */
 public class TestDatabaseConnection {
 
-    public static void main(String[] args) {
-        DatabaseConnection db = new DatabaseConnection();
-        try {
-            db.connect();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    private static final PersonDao dao = new PersonDao();
 
-        db.disconnect();
+    public static void main(String[] args) {
+        //dao.tryGettingPeople();
+        //dao.trySavingPerson();
+        //dao.tryGettingPersonById(3);
+        dao.addPerson(new Person("Joe Dalton", "Prisonier", 
+                AgeCategory.adult, 
+                EmployementCategory.unemployed, 
+                "J-89", true, GenderCategory.male));
+        dao.addPerson(new Person("Lucky Luc", "Mercenary", 
+                AgeCategory.adult, 
+                EmployementCategory.employed, 
+                "J-89", true, GenderCategory.male));
+        
+        dao.save();
+        
     }
 }
