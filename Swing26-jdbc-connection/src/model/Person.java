@@ -43,6 +43,17 @@ public class Person implements Serializable {
         this.id = index.incrementAndGet();
     }
 
+    public Person(Long id, String name, String occupation, AgeCategory ageCategory, EmployementCategory empCategory, String taxId, boolean usCitizen, GenderCategory gender) {
+        this.id = id;
+        this.name = name;
+        this.occupation = occupation;
+        this.ageCategory = ageCategory;
+        this.empCategory = empCategory;
+        this.taxId = taxId;
+        this.usCitizen = usCitizen;
+        this.gender = gender;
+    }
+
     public Long getId() {
         return id;
     }

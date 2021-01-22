@@ -18,16 +18,27 @@ public class TestDatabaseConnection {
         //dao.tryGettingPeople();
         //dao.trySavingPerson();
         //dao.tryGettingPersonById(3);
-        dao.addPerson(new Person("Joe Dalton", "Prisonier", 
-                AgeCategory.adult, 
-                EmployementCategory.unemployed, 
+        /*
+        dao.addPerson(new Person("Joe", "Prisonier",
+                AgeCategory.adult,
+                EmployementCategory.other,
                 "J-89", true, GenderCategory.male));
-        dao.addPerson(new Person("Lucky Luc", "Mercenary", 
-                AgeCategory.adult, 
-                EmployementCategory.employed, 
+        dao.addPerson(new Person("Lucky Luc", "Law Enforcer",
+                AgeCategory.adult,
+                EmployementCategory.employed,
                 "J-89", true, GenderCategory.male));
-        
+
         dao.save();
-        
+         */
+        //dao.trySavingCitizen();
+        /*
+        Person p = new Person("Joe", "Prisonier",
+                AgeCategory.adult,
+                EmployementCategory.other,
+                "J-89", true, GenderCategory.male);
+        p.setId(1L);
+        dao.updatePerson(p);
+         */
+        dao.fetchPeople();
     }
 }

@@ -86,7 +86,32 @@ public class PersonDao {
                 ResultSet rs = checkStatement.executeQuery();
                 rs.next(); // moving pointer to the first row of the table
                 int count = rs.getInt(1); // Get the first return result
-                System.out.println("Person with ID " + person.getId() + " has " + count + " occurance");
+
+                if (count == 0) {
+                    // Perform INSERT
+                    String saveSql = "insert into citizens(id, name, occupation, age_cat, emp_cat,  tax_id, us_citizen, gender) "
+                            + "values(?, ?, ?, ?, ?, ?, ?, ?)";
+                    PreparedStatement saveStatement = dbConnection.prepareStatement(saveSql);
+
+                    saveStatement.setInt(1, Integer.valueOf(person.getId().toString()));
+                    saveStatement.setString(2, person.getName());
+                    saveStatement.setString(3, person.getOccupation());
+                    saveStatement.setString(4, person.getAgeCategory().name());
+                    saveStatement.setString(5, person.getEmpCategory().name());
+                    saveStatement.setString(6, person.getTaxId());
+                    saveStatement.setBoolean(7, person.isUsCitizen());
+                    saveStatement.setString(8, person.getGender().name());
+
+                    if (!saveStatement.execute()) { // If not error
+                        System.out.println("Citizen saved!");
+                    }
+                    saveStatement.close();
+                } else {
+                    // Else perform UPDATE
+                    this.updatePerson(person);
+                }
+
+                checkStatement.close();
             }
         } catch (Exception ex) {
         } finally {
@@ -162,19 +187,85 @@ public class PersonDao {
             PreparedStatement saveStatement = dbConnection.prepareStatement(saveSql);
 
             saveStatement.setInt(1, 0);
-            saveStatement.setString(2, "Silver");
+            saveStatement.setString(2, "Litle Prince");
             saveStatement.setString(3, "Fight crims");
-            saveStatement.setString(4, "Senior");
-            saveStatement.setString(5, "Super hero");
-            saveStatement.setString(6, "S-SIL-01");
+            saveStatement.setString(4, AgeCategory.child.name());
+            saveStatement.setString(5, EmployementCategory.employed.name());
+            saveStatement.setString(6, "LP-S1");
             saveStatement.setBoolean(7, false);
-            //saveStatement.setString(8, GenderCategory.male);
+            saveStatement.setString(8, GenderCategory.male.name());
 
             if (!saveStatement.execute()) { // If not error
                 System.out.println("Citizen saved!");
             }
 
             DBConnection.disconnect(dbConnection);
+        } catch (Exception ex) {
+            Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updatePerson(Person person) {
+        try {
+            dbConnection = DBConnection.getConnection();
+            String updateSql = "update citizens set name=?, occupation=?, age_cat=?, "
+                    + "emp_cat=?,  tax_id=?, us_citizen=?, gender=? where id=?";
+            PreparedStatement updateStatement = dbConnection.prepareStatement(updateSql);
+
+            updateStatement.setString(1, person.getName());
+            updateStatement.setString(2, person.getOccupation());
+            updateStatement.setString(3, person.getAgeCategory().name());
+            updateStatement.setString(4, person.getEmpCategory().name());
+            updateStatement.setString(5, person.getTaxId());
+            updateStatement.setBoolean(6, person.isUsCitizen());
+            updateStatement.setString(7, person.getGender().name());
+            updateStatement.setInt(8, Integer.valueOf(person.getId().toString()));
+
+            int rows = updateStatement.executeUpdate();
+            System.out.println("Number of rows updated: " + rows);
+        } catch (Exception ex) {
+            Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DBConnection.disconnect(dbConnection);
+        }
+    }
+
+    public void fetchPeople() {
+        people.clear();
+        try {
+            dbConnection = DBConnection.getConnection();
+            System.out.println("Database connected!");
+
+            String peopleSql = "select * from citizens";
+            PreparedStatement checkStatement = dbConnection.prepareStatement(peopleSql);
+            /*
+            Can use: 
+            Statement stm = dbConnection.createStatement();
+            stm.executeQuery("select * from citizens order by id");
+             */
+
+            ResultSet rs = checkStatement.executeQuery();
+
+            while (rs.next()) {
+
+                people.add(new Person(
+                        Long.valueOf(rs.getInt("id")),
+                        rs.getString("name"),
+                        rs.getString("occupation"),
+                        AgeCategory.valueOf(rs.getString("age_cat")),
+                        EmployementCategory.valueOf(rs.getString("emp_cat")),
+                        rs.getString("tax_id"),
+                        rs.getBoolean("us_citizen"),
+                        GenderCategory.valueOf(rs.getString("gender"))));
+
+            }
+            
+            people.forEach((p) -> {
+                System.out.println(p);
+            });
+
+            DBConnection.disconnect(dbConnection);
+            System.out.println("Database Disconnected!");
         } catch (Exception ex) {
             Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, null, ex);
         }
