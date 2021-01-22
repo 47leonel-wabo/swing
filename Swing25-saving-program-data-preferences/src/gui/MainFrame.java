@@ -114,6 +114,7 @@ public class MainFrame extends JFrame {
         setSize(xSize, ySize);
         setMinimumSize(new Dimension(600, 400)); // Constraint minimum windows size
         setVisible(true);
+        setLocationRelativeTo(null); // Centering window
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -191,6 +192,7 @@ public class MainFrame extends JFrame {
         }));
 
         importItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
+        prefMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 
         // Show Form Action Listener
         showCheckBoxMenuItem.addActionListener((a) -> {

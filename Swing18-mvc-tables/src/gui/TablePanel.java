@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 import model.Person;
@@ -28,7 +29,7 @@ public class TablePanel extends JPanel {
         Border outerBorder = BorderFactory.createEmptyBorder(8, 8, 8, 2); // Padding TOP RIGHT BOTTOM LEFT
         setBorder(BorderFactory.createCompoundBorder(outerBorder, outerBorder)); // Border
 
-        add(table, BorderLayout.CENTER); // Positionning our table component on our layout
+        add(new JScrollPane(table), BorderLayout.CENTER); // Positionning our table component on our layout
     }
 
     public void setTableModelData(List<Person> people) {

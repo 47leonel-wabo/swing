@@ -29,7 +29,7 @@ public class MenuBarPanel extends JMenuBar {
     private CloseAppListener closeAppListener;
 
     public MenuBarPanel() {
-        setLayout(new FlowLayout(FlowLayout.LEFT));
+        //setLayout(new FlowLayout(FlowLayout.LEFT));
 
         //menuBar = new JMenuBar();
         fileMenu = new JMenu("File");
@@ -54,7 +54,7 @@ public class MenuBarPanel extends JMenuBar {
         helpMenu.add(aboutMenuItem);
         add(helpMenu);
 
-        // Adding Mnemonic
+        // Adding Mnemonics
         fileMenu.setMnemonic(KeyEvent.VK_F);
         viewMenu.setMnemonic(KeyEvent.VK_V);
         helpMenu.setMnemonic(KeyEvent.VK_H);

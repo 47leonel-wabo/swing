@@ -16,9 +16,15 @@ public class PersonTableModel extends AbstractTableModel {
         in our table as data.
      */
     private List<Person> people;
+    private final String[] colNames = {"Id", "Name", "Occupation", "Gender", "Age Category", "Employment Caegory", "US Citizen", "Tax ID"};
 
     public PersonTableModel() {
         this.people = new ArrayList<>();
+    }
+
+    @Override
+    public String getColumnName(int i) {
+        return colNames[i];
     }
 
     public List<Person> getPeople() {
@@ -36,7 +42,7 @@ public class PersonTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 8;
     }
 
     @Override
@@ -50,12 +56,14 @@ public class PersonTableModel extends AbstractTableModel {
             case 2:
                 return p.getOccupation();
             case 3:
-                return p.getAgeCategory();
+                return p.getGender();
             case 4:
-                return p.getEmpCategory();
+                return p.getAgeCategory();
             case 5:
-                return p.isUsCitizen();
+                return p.getEmpCategory();
             case 6:
+                return p.isUsCitizen();
+            case 7:
                 return p.getTaxId();
         }
         return null;
